@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="{{gb_logo}}" />
+    <link rel="icon" href="{{gb_logo}}?v=2" />
+
+    <title>Gimi | Sistema Django</title>
+
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'font-awesome/css/font-awesome.css' %}" rel="stylesheet">
+    <link href="{% static 'css/animate.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+
+    <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" language="javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="{% static 'js/plugins/jquery-mask/jquery.mask.min.js' %}"></script>
+    <script src="{% static 'js/plugins/metisMenu/jquery.metisMenu.js' %}"></script>
+    <script src="{% static 'js/plugins/slimscroll/jquery.slimscroll.min.js' %}"></script>
+    <script src="{% static 'js/plugins/bootstrap-daterangepicker/moment.min.js' %}"></script>
+    <script src="{% static 'js/plugins/bootstrap-daterangepicker/daterangepicker.js' %}"></script>
+    <!-- Custom and plugin javascript -->
+    <script src="{% static 'js/inspinia.js' %}"></script>
+    <script src="{% static 'js/plugins/pace/pace.min.js' %}"></script>
+
+    {% block js %}
+    {% endblock %}
+
+    {% block js_base %}
+    {% endblock %}
+
+</head>
+
+<body>
+
+<div id="wrapper" style="background-color:#253286">
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav metismenu" id="side-menu">
+                <li  style="background-color:#253286">
+                    <div class="dropdown profile-element" style="padding-top:20px;">
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <img alt="image" class="center-block img-lg img-circle" src="https://www.gimi.com.br/wp-content/uploads/2019/06/logo-gimi.svg">
+                            </a>
+                           
+                    </div>
+                </li>
+                {% include 'core/menu.html' %}
+            </ul>
+
+        </div>
+    </nav>
+
+    <div id="page-wrapper" class="gray-bg" width="100%">
+
+    {% block menu_navbar %}
+    {% endblock %}
+
+    {% block content %}
+    {% endblock %}
+
+    {% block footer %}
+    {% endblock %}
+
+    </div>
+</div>
+
+
+</body>
+</html>

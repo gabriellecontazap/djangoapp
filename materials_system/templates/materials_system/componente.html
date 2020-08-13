@@ -1,0 +1,33 @@
+{% extends 'core/base_list.html' %}
+
+
+{% block table_content %}
+<thead>
+	<tr>
+	<th>Id</th>
+        <th>Nome do Fornecedor</th>
+        <th>Linha de Producão</th>
+        <th>Corrente</th>
+        <th>ICC 127</th>
+        <th>ICC 220</th>
+	</tr>
+</thead>
+
+<tbody>
+{% for componente in componentes %}
+	<tr>
+		<td class="text-center">{{componente.pk}}</td>
+		<td class="text-center">{{componente.suppliername}}</td>
+        <td class="text-center">{{componente.prodline}}</td>
+        <td class="text-center">{{componente.corrente}}</td>
+        <td class="text-center">{{componente.icc127}}</td>
+        <td class="text-center">{{componente.icc220}}</td>
+	</tr>
+{% endfor %}
+
+</tbody>
+{% endblock %}
+
+{% block table_addional_configuration %}
+	"order": [[ 0, 'desc' ]]
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'core/base_list.html' %}
+
+{% block menu_navbar %}
+<div class="row border-bottom" width="100%">
+    <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0" width="100%">
+        <div class="navbar-header" width="100%">
+            <a class="navbar-minimalize minimalize-styl-2 btn" style="background-color:#253286; color:#fff" href="#" width="100%"><em class="fa fa-bars"></em> </a>
+            <form role="search" class="navbar-form-custom" method="post" action="#" style="width: 800px">
+                <div class="form-group" style="width: 1300px">
+                    <div style="padding-top:20px; color: #989898">
+
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-left:20px; color: #989898; font-weight:bold;">Elétrica<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{% url 'tensao_list' %}">Tensão</a></li>
+                            <li><a href="{% url 'corrente_list' %}">Corrente</a></li>
+                          </ul>
+
+                     <a href="{% url 'fabricantes_list' %}" style="padding-left:20px; color: #989898; font-weight:bold;">Fabricantes</a>
+
+                     <a href="{% url 'linha_list' %}" style="padding-left:20px; color: #989898; font-weight:bold;">Linha de Producão</a>
+                
+<!--                     <a href="{% url 'home' %}" style="padding-left:20px; color: #989898; font-weight:bold;">Componente</a> -->
+            </div>
+                </div>
+            </form>
+        </div>
+    </nav>
+</div>
+{% endblock %}
+{% block table_content %}
+<thead>
+	<tr>
+		<th>Id</th>
+        <th>Valor</th>
+	</tr>
+</thead>
+
+<tbody>
+
+{% for tensao in tensoes %}
+	<tr>
+		<td class="text-center">{{tensao.pk}}</td>
+        <td class="text-center">{{tensao.value}}</td>
+	</tr>
+{% endfor %}
+
+</tbody>
+{% endblock %}
+
+{% block table_addional_configuration %}
+	"order": [[ 0, 'desc' ]]
+{% endblock %}
