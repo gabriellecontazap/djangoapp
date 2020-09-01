@@ -1,0 +1,40 @@
+
+<div class="row border-bottom" width="100%">
+    <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0" width="100%">
+        <div class="navbar-header" width="100%">
+            <a class="navbar-minimalize minimalize-styl-2 btn" style="background-color:#253286; color:#fff" href="#" width="100%"><em class="fa fa-bars"></em> </a>
+            <form role="search" class="navbar-form-custom" method="post" action="#" style="width: 800px">
+                <div class="form-group" style="width: 1300px">
+                    <div style="padding-top:20px; color: #989898">
+
+                        <div class="btn-group">
+                        <a href="{% url 'fornecedores_list' %}" style="padding-left:20px; color: #989898; font-weight:bold;">Produto</a>
+                        </div>
+
+                        <div class="btn-group">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-left:20px; color: #989898; font-weight:bold;">Auxiliares<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{% url 'tensao_list' %}">Tensão</a></li>
+                            <li><a href="{% url 'icc_list' %}">ICC</a></li>
+                            <li><a href="{% url 'formaconstrutiva_list' %}">Forma Construtiva</a></li>
+                            <li><a href="{% url 'corrente_list' %}">Corrente</a></li>
+                            <li><a href="{% url 'graudeprotecao_list' %}">Grau de Protecão</a></li>
+                          </ul>
+                        </div>
+
+                        <div class="btn-group">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-left:20px; color: #989898; font-weight:bold;">Agentes<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{% url 'fornecedores_list' %}">Fornecedores</a></li>
+                            <li><a href="{% url 'vendedor_list' %}">Vendedores</a></li>
+                            <li><a href="{% url 'cliente_list' %}">Clientes</a></li>
+                          </ul>
+                      </div>
+
+<!--                     <a href="{% url 'home' %}" style="padding-left:20px; color: #989898; font-weight:bold;">Componente</a> -->
+            </div>
+                </div>
+            </form>
+        </div>
+    </nav>
+</div>

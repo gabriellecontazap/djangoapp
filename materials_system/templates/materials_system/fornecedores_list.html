@@ -1,0 +1,36 @@
+{% extends 'core/base_list.html' %}
+
+{% block menu_navbar %}
+
+{% include 'materials_system/menu_navbar.html' %}
+
+{% endblock %}
+{% block table_content %}
+<thead>
+	<tr>
+		<th>Id</th>
+        <th>Nome</th>
+        <th>Marca</th>
+        <th>Acoes</th>
+	</tr>
+</thead>
+
+<tbody>
+{% for fornecedor in fornecedores %}
+	<tr>
+		<td class="text-center">{{fornecedor.pk}}</td>
+		<td class="text-center">{{fornecedor.name}}</td>
+        <td class="text-center">{{fornecedor.brand}}</td>
+        <td class="text-center">
+		<a href="{% url 'fornecedores_edit' fornecedor_pk=fornecedor.pk %}" class="btn btn-default"><em class="glyphicon glyphicon-pencil"></em></a>
+		<a href="{% url 'fornecedor_remove' fornecedor_pk=fornecedor.pk %}"  class="btn btn-danger"><em class="glyphicon glyphicon-remove"></em></a>
+		</td>
+	</tr>
+{% endfor %}
+
+</tbody>
+{% endblock %}
+
+{% block table_addional_configuration %}
+	"order": [[ 0, 'desc' ]]
+{% endblock %}

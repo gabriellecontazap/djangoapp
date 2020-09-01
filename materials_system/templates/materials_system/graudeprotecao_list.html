@@ -1,0 +1,32 @@
+{% extends 'core/base_list.html' %}
+
+{% block menu_navbar %}
+
+{% include 'materials_system/menu_navbar.html' %}
+
+{% endblock %}
+{% block table_content %}
+<thead>
+	<tr>
+		<th>Id</th>
+        <th>Valor</th>
+        <th>Acoes</th>
+	</tr>
+</thead>
+
+<tbody>
+{% for grau in graus %}
+	<tr>
+		<td class="text-center">{{grau.pk}}</td>
+		<td class="text-center">{{grau.value}}</td>
+		<td class="text-center">
+		<a href="{% url 'grau_remove' grau_pk=grau.pk %}"  class="btn btn-danger"><em class="glyphicon glyphicon-remove"></em></a></td>
+	</tr>
+{% endfor %}
+
+</tbody>
+{% endblock %}
+
+{% block table_addional_configuration %}
+	"order": [[ 0, 'desc' ]]
+{% endblock %}
