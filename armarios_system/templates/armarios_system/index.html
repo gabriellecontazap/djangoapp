@@ -23,7 +23,21 @@
 {% block content %}
 <html>
   <body>
-  <h1>Sistema de Armários</h1><br>Aqui você pode gerar Painéis Modulares para seus clientes.<br/><br/>
+  <h1>Bem Vindo ao Dimensionamento de Painéis</h1>
+  <br>Aqui você pode gerar Painéis Modulares para seus clientes. Para começar selecione uma obra ou inicie uma nova.<br/><br/>
+  <a href="{% url 'obras_list' %}"><button style="background: #253286; border-radius: 6px; padding: 15px; cursor: pointer; color: #fff; border: none; font-size: 16px;">OBRAS EM ANDAMENTO</button></a>&nbsp;
+  <a href="{% url 'obras_create' %}"><button style="background: #253286; border-radius: 6px; padding: 15px; cursor: pointer; color: #fff; border: none; font-size: 16px;">INICIAR NOVA OBRA</button></a>
+  <br/>
+  </body>
+</html>
+{% endblock %}
+
+
+{% block footer %}
+<html>
+  <body>
+  <br>@Sob registro de SBBTEC Tecnologia Ltda.<br/>
+  Desenvolvido por Gabrielle Arruda.<br/>
   </body>
 </html>
 {% endblock %}

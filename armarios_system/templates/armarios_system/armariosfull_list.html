@@ -1,0 +1,211 @@
+{% extends 'core/base_list.html' %}
+
+{% block css %}
+<style type="text/css">
+
+.Terra {
+  display: none;
+}
+
+.Neutro {
+  display: none;
+}
+
+.GeralHorizontal {
+  display: none;
+}
+
+.mensagem {
+  display: none;
+}
+
+.bottomTerra:hover + .Terra {
+  color:#000000;
+  background-color: #808080;
+  border:1px solid black;
+  height:auto;
+  width:180px;
+  left:100%;
+  position:relative;
+  display: block;
+}
+
+.bottomNeutro:hover + .Neutro {
+  color:#000000;
+  background-color: #808080;
+  border:1px solid black;
+  height:auto;
+  width:180px;
+  left:100%;
+  position:relative;
+  display: block;
+}
+
+.bottomGeralHorizontal:hover + .GeralHorizontal {
+  color:#000000;
+  background-color: #808080;
+  border:1px solid black;
+  height:auto;
+  width:180px;
+  left:100%;
+  position:relative;
+  display: block;
+}
+
+.bottommensagem:hover + .mensagem {
+  color:#000000;
+  background-color: #808080;
+  border:1px solid black;
+  height:auto;
+  width:180px;
+  left:100%;
+  position:relative;
+  display: block;
+}
+
+button{
+  margin:auto;
+  font-size:14px;
+  left:0;
+  right:0;
+  bottom:0;
+  top:0;
+
+}
+
+table {
+  border: 1px solid black;
+}
+
+th {
+  border: 1px solid black;
+}
+
+</style>
+{% endblock %}
+
+{% block menu_navbar %}
+{% include 'armarios_system/menu_navbar.html' %}
+{% endblock %}
+
+{% block table_content %}
+<thead>
+	<tr>
+		<th>ID</th>
+		<th>Componentes</th>
+		<th>Acoes</th>
+	</tr>
+</thead>
+<tbody>
+{% for coluna in colunas %}
+	<tr>
+		<td class="text-center">{{coluna.id}}</td>
+		<td class="text-center">{{coluna.componentes}}</td>
+		<td class="text-center">
+        <a href="{% url 'armario_columns_remove' armario_pk=armario_pk coluna_pk=coluna.id %}" class="btn btn-default"><em class="glyphicon glyphicon-pencil"></em></a>
+		
+		<a href="{% url 'armario_columns_remove' armario_pk=armario_pk coluna_pk=coluna.id %}"  class="btn btn-danger"><em class="glyphicon glyphicon-remove"></em></a></td>
+	</tr>
+{% endfor %}
+</tbody>
+
+{% endblock %}
+
+
+
+
+{% block grafico %}
+
+<table border="1px solid black;" height=600>
+	<tr>
+	{% for coluna in colunas %}
+		<th width=200 class="text-center">COLUNA {{coluna.id}}</th>
+	{% endfor %}
+	</tr>
+
+	<tr>
+	{% for coluna in colunas %}
+	        <td class="text-center">
+	        	<div class="bottomGeralHorizontal" style="height:20px; width:200px; background-color:#000000;"><p style="color:#FFFFFF;">Geral - Horizontal</p></div>
+			  <div class="GeralHorizontal">{{coluna.barrageralhorizontal}}</div>
+			  </td>
+	{% endfor %}
+	</tr>
+	<tr>
+	{% for coluna in colunas %}
+		<td class="text-center">
+			{% for componente in coluna.dadoscomponente %}
+			        <button class="bottommensagem" style="height:100px; width:180px; border:1px solid black; ">
+					  Componente - {{componente.id}} - {{componente.prodline}}</button>
+					  <div class="mensagem" >ID: {{componente.id}}<br>
+					  Corrente: {{componente.corrente}}<br>
+					  Tensão: {{componente.tensao}}<br>
+					  Altura: {{componente.altura}}<br>
+					  Largura: {{componente.largura}}<br>
+					  Profundidade: {{componente.profundidade}}<br>
+					  Peso: {{componente.peso}}
+					  </div>
+					  <br>
+			{% endfor %}
+		</td>
+	{% endfor %}
+	</tr>
+
+	<tr>
+	{% for coluna in colunas %}
+	        <td class="text-center">
+	        <div class="bottomNeutro" style="height:20px; width:200px; background-color:#0000ff;"><p style="color:#FFFFFF;">Neutro</p></div>
+			  <div class="Neutro">{{coluna.barraneutro}}</div>
+			  </td>
+	{% endfor %}
+	</tr>
+	<tr>
+	{% for coluna in colunas %}
+        <td class="text-center">
+        <div class="bottomTerra" style="height:20px; width:200px; background-color:#209700;"><p style="color:#FFFFFF;">Terra</p></div>
+		  <div class="Terra">{{coluna.barraterra}}</div>
+		  </td>
+	{% endfor %}
+	</tr>
+
+</table>
+<br>
+{% endblock %}
+
+
+{% block js_base %}
+<!-- <script>
+let geralhorizontal = document.querySelector(".GeralHorizontal");
+function showgeralhorizontal(){geralhorizontal.style.display = "block";}
+function hidegeralhorizontal(){geralhorizontal.style.display = "none";}
+
+let mensagem = document.querySelector(".mensagem");
+function showMessage(){mensagem.style.display = "block";}
+function hideMessage(){mensagem.style.display = "none";}
+
+let Neutro = document.querySelector(".Neutro");
+function showNeutro(){Neutro.style.display = "block";}
+function hideNeutro(){Neutro.style.display = "none";}
+
+
+// let Terra = document.querySelectorAll('.Terra1');
+// function showTerra(x){Terra[0].style.display = "block";}
+// function hideTerra(x){Terra[0].style.display = "none";}
+
+
+// var Terra = document.querySelectorAll('.Terra1');
+// for(var x=0; x<Terra.length; x++){
+//    Terra[x].onmouseenter = function(){
+//       this.querySelector('span').style.display = 'inline-block';
+//    }
+//    Terra[x].onmouseleave = function(){
+//       this.querySelector('span').style.display = 'none';
+//    }
+// }
+
+</script> -->
+{% endblock %}
+
+{% block table_addional_configuration %}
+	"order": [[ 0, 'desc' ]]
+{% endblock %}

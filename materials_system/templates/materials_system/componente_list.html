@@ -1,0 +1,44 @@
+{% extends 'core/base_list.html' %}
+
+{% block menu_navbar %}
+
+{% include 'materials_system/menu_navbar.html' %}
+
+{% endblock %}
+
+{% block table_content %}
+<thead>
+	<tr>
+	<th>Id</th>
+        <th>Nome do Fornecedor</th>
+        <th>Linha de Producão</th>
+        <th>Corrente</th>
+        <th>Altura</th>
+        <th>Largura</th>
+        <th>Profundidade</th>
+        <th>Acoes</th>
+	</tr>
+</thead>
+
+<tbody>
+{% for componente in componentes %}
+	<tr>
+	<td class="text-center">{{componente.pk}}</td>
+	<td class="text-center">{{componente.suppliername}}</td>
+        <td class="text-center">{{componente.prodline}}</td>
+        <td class="text-center">{{componente.corrente}}</td>
+        <td class="text-center">{{componente.altura}}</td>
+        <td class="text-center">{{componente.largura}}</td>
+        <td class="text-center">{{componente.profundidade}}</td>
+        <td class="text-center">
+        <a href="{% url 'componente_edit' componente_pk=componente.pk %}" class="btn btn-default"><em class="glyphicon glyphicon-pencil"></em></a>
+        <a href="{% url 'componente_remove' componente_pk=componente.pk %}"  class="btn btn-danger"><em class="glyphicon glyphicon-remove"></em></a></td>
+	</tr>
+{% endfor %}
+
+</tbody>
+{% endblock %}
+
+{% block table_addional_configuration %}
+	"order": [[ 0, 'desc' ]]
+{% endblock %}

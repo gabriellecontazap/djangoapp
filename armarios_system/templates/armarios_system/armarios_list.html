@@ -1,0 +1,33 @@
+{% extends 'core/base_list.html' %}
+
+{% block menu_navbar %}
+{% include 'armarios_system/menu_navbar.html' %}
+{% endblock %}
+
+{% block table_content %}
+<thead>
+	<tr>
+		<th>ID</th>
+        <th>ID da Obra</th>
+        <th></th>
+        <th>Acoes</th>
+	</tr>
+</thead>
+<tbody>
+{% for armario in armarios %}
+	<tr>
+		<td class="text-center">{{armario.pk}}</td>
+        <td class="text-center">{{armario.obra}}</td>
+        <td class="text-center">
+        <a href="{% url 'armario_columns_list' armario_pk=armario.pk %}"><button style="background: #253286; border-radius: 6px; padding: 8px; cursor: pointer; color: #fff; border: none; font-size: 16px;">Abrir Armario</button></a></td>
+        <td class="text-center">
+		<a href="{% url 'armarios_remove' obra_pk=obra_pk armario_pk=armario.pk %}"  class="btn btn-danger"><em class="glyphicon glyphicon-remove"></em></a></td>
+	</tr>
+{% endfor %}
+
+</tbody>
+{% endblock %}
+
+{% block table_addional_configuration %}
+	"order": [[ 0, 'desc' ]]
+{% endblock %}

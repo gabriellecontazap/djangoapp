@@ -11,6 +11,7 @@ class CorrenteListView(ListView):
 
 	def get_queryset(self):
 		queryset = Corrente.objects.all()
+		queryset = queryset.filter(deleted_flag=False)
 		return queryset
 
 	def get_context_data(self, **kwargs):
@@ -40,5 +41,15 @@ class CorrenteCreateView(FormView):
 		  deleted_flag=False
 		)
 		values.save()
-
 		return HttpResponseRedirect(reverse_lazy("corrente_list"))
+
+class CorrenteRemoveView(RedirectView):
+	pk_url_kwarg = 'corrente_pk' # Nome da pk na url
+	permanent = False
+
+	def get_redirect_url(self, *args, **kwargs):
+		values = Corrente.objects.get(pk=kwargs['corrente_pk'])
+		values.deleted_flag = True
+		values.save()
+		self.url = reverse_lazy("corrente_list")
+		return super(CorrenteRemoveView, self).get_redirect_url(*args, **kwargs)

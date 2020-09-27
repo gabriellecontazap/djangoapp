@@ -1,0 +1,44 @@
+{% extends 'core/base_list.html' %}
+
+{% block menu_navbar %}
+<div class="row border-bottom" width="100%">
+    <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0" width="100%">
+        <div class="navbar-header" width="100%">
+            <a class="navbar-minimalize minimalize-styl-2 btn" style="background-color:#253286; color:#fff" href="#" width="100%"><em class="fa fa-bars"></em> </a>
+        </div>
+    </nav>
+</div>
+{% endblock %}
+
+
+{% block table_content %}
+<thead>
+	<tr>
+		<th>ID</th>
+        <th>Vendedor</th>
+        <th>Cliente</th>
+        <th>Data</th>
+        <th></th>
+        <th>Acoes</th>
+	</tr>
+</thead>
+<tbody>
+{% for obra in obras %}
+	<tr>
+		<td class="text-center">{{obra.pk}}</td>
+        <td class="text-center">{{obra.vendedor}}</td>
+        <td class="text-center">{{obra.cliente}}</td>
+        <td class="text-center">{{obra.date}}</td>
+        <td class="text-center">
+        <a href="{% url 'armarios_list' obra_pk=obra.pk %}"><button style="background: #253286; border-radius: 6px; padding: 8px; cursor: pointer; color: #fff; border: none; font-size: 16px;">Abrir Obra</button></a></td>
+        <td class="text-center">
+		<a href="{% url 'obras_remove' obra_pk=obra.pk %}"  class="btn btn-danger"><em class="glyphicon glyphicon-remove"></em></a></td>
+	</tr>
+{% endfor %}
+
+</tbody>
+{% endblock %}
+
+{% block table_addional_configuration %}
+	"order": [[ 0, 'desc' ]]
+{% endblock %}

@@ -10,6 +10,7 @@ class TensaoListView(ListView):
 
 	def get_queryset(self):
 		queryset = Tensao.objects.all()
+		queryset = queryset.filter(deleted_flag=False)
 		return queryset
 
 	def get_context_data(self, **kwargs):
@@ -41,3 +42,14 @@ class TensaoCreateView(FormView):
 		values.save()
 
 		return HttpResponseRedirect(reverse_lazy("tensao_list"))
+
+class TensaoRemoveView(RedirectView):
+	pk_url_kwarg = 'tensao_pk' # Nome da pk na url
+	permanent = False
+
+	def get_redirect_url(self, *args, **kwargs):
+		values = Tensao.objects.get(pk=kwargs['tensao_pk'])
+		values.deleted_flag = True
+		values.save()
+		self.url = reverse_lazy("tensao_list")
+		return super(TensaoRemoveView, self).get_redirect_url(*args, **kwargs)
